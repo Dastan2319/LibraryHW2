@@ -14,7 +14,6 @@ namespace WebApplication1.Repositories
         private BookRepository bookRepository;
         private UsersRepository usersRepository;
         private AuthorsRepository authorsRepository;
-        private TakedBooksRepository takedBooksRepository;
         private GanreRepository ganreRepository;
         public IRepository<Books> Books
         {
@@ -44,15 +43,7 @@ namespace WebApplication1.Repositories
                 return authorsRepository;
             }
         }
-        public IRepository<TakedBooks> TakedBooks
-        {
-            get
-            {
-                if (takedBooksRepository == null)
-                    takedBooksRepository = new TakedBooksRepository(db);
-                return takedBooksRepository;
-            }
-        }
+        
 
         public IRepository<Ganre> Ganre
         {

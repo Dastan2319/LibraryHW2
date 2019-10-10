@@ -8,17 +8,11 @@ namespace DLL
 
     public partial class Users
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Users()
-        {
-            TakedBooks = new HashSet<TakedBooks>();
-        }
 
         public int Id { get; set; }
 
         public string FIO { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TakedBooks> TakedBooks { get; set; }
+        public string password { get; set; }
     }
 }

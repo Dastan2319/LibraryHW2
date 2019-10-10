@@ -36,8 +36,8 @@ namespace WebApplication1.Controllers
 
             if (id != null)
             {
-                var mapper = new MapperConfiguration(cfg => cfg.CreateMap<UsersDTO, UsersViewModel>()).CreateMapper();
-                user = mapper.Map<UsersDTO, UsersViewModel>(usersService.GetUsers(id));
+                //var mapper = new MapperConfiguration(cfg => cfg.CreateMap<UsersDTO, UsersViewModel>()).CreateMapper();
+                //user = mapper.Map<UsersDTO, UsersViewModel>(usersService.GetUsers(id));
             }
             return View(user);
 

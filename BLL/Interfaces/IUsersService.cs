@@ -11,7 +11,7 @@ namespace BLL.Interfaces
     public interface IUsersService
     {
         void MakeUsers(UsersDTO orderDto);
-        UsersDTO GetUsers(int? id);
+        UsersDTO GetUsers(UsersDTO id);
         IEnumerable<UsersDTO> GetUsers();
         void SaveUpdate(Users orderDto);
         void Dispose();

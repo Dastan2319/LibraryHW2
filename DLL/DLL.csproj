@@ -62,6 +62,10 @@
     <Compile Include="Migrations\201910101311391_first.Designer.cs">
       <DependentUpon>201910101311391_first.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910101400318_passwordForUsers.cs" />
+    <Compile Include="Migrations\201910101400318_passwordForUsers.Designer.cs">
+      <DependentUpon>201910101400318_passwordForUsers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -72,7 +76,6 @@
     <Compile Include="Repositories\GanreRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\IUnitOfWork.cs" />
-    <Compile Include="Repositories\TakedBooksRepository.cs" />
     <Compile Include="Repositories\UnitOfWork.cs" />
     <Compile Include="Repositories\UsersRepository.cs" />
   </ItemGroup>
@@ -83,6 +86,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201910101311391_first.resx">
       <DependentUpon>201910101311391_first.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910101400318_passwordForUsers.resx">
+      <DependentUpon>201910101400318_passwordForUsers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

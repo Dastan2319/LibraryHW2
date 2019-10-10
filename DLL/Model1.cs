@@ -41,16 +41,6 @@ namespace DLL
             modelBuilder.Entity<Books>()
                 .Property(e => e.Title)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<Books>()
-                .HasMany(e => e.TakedBooks)
-                .WithOptional(e => e.Books)
-                .HasForeignKey(e => e.Books_Id);
-
-            modelBuilder.Entity<Users>()
-                .HasMany(e => e.TakedBooks)
-                .WithRequired(e => e.Users)
-                .HasForeignKey(e => e.UserId);
         }
     }
 }

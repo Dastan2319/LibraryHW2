@@ -24,12 +24,20 @@ namespace BLL.Service
             db.Dispose();
         }
 
-        public UsersDTO GetUsers(int? id)
+        public UsersDTO GetUsers(UsersDTO id)
         {
             if (id != null)
             {
-                var users = db.Users.Get(id);
-                return new UsersDTO { FIO= users.FIO };
+                var users = db.Users.GetAll().Where(x => x.FIO == id.FIO && x.password == id.password).FirstOrDefault();
+                
+                if (users!= null)
+                {
+                    return new UsersDTO { FIO = "true"};
+                }
+                else
+                {
+                    return new UsersDTO();
+                }
             }
             else
             {
@@ -47,7 +55,8 @@ namespace BLL.Service
         {
             Users user = new Users
             {
-                FIO = orderDto.FIO
+                FIO = orderDto.FIO,
+                password=orderDto.password
             };
             db.Users.Create(user);
             db.Save();
@@ -57,7 +66,8 @@ namespace BLL.Service
         {
             Users users = new Users
             {
-                FIO = orderDto.FIO
+                FIO = orderDto.FIO,
+                password = orderDto.password
             };
             db.Users.Update(users);
             db.Save();

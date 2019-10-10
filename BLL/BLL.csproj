@@ -54,20 +54,17 @@
     <Compile Include="DTO\AuthorsDTO.cs" />
     <Compile Include="DTO\BookDTO.cs" />
     <Compile Include="DTO\GanreDTO.cs" />
-    <Compile Include="DTO\TakedBooksDTO.cs" />
     <Compile Include="DTO\UsersDTO.cs" />
     <Compile Include="Infrastructure\ServiceModule.cs" />
     <Compile Include="Infrastructure\ValidationException.cs" />
     <Compile Include="Interfaces\IAuthorService.cs" />
     <Compile Include="Interfaces\IBookService.cs" />
     <Compile Include="Interfaces\IGanreService.cs" />
-    <Compile Include="Interfaces\ITakedBooksService.cs" />
     <Compile Include="Interfaces\IUsersService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\AuthorService.cs" />
     <Compile Include="Service\BookService.cs" />
     <Compile Include="Service\GanreService.cs" />
-    <Compile Include="Service\TakedBooksService.cs" />
     <Compile Include="Service\UsersService.cs" />
   </ItemGroup>
   <ItemGroup>
