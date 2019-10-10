@@ -1,0 +1,82 @@
+﻿.name
+{
+    background:green;
+    color:black;
+   
+}
+
+.lastname{
+    margin:1px;
+    color:aqua;
+}
+
+.navbarColor
+{
+    animation:shadow 5s infinite;
+}
+.SitePic
+{
+    width:400px;
+    height:300px;
+}
+
+.app
+{
+    dispay:flex;
+    flex-direction:column;
+}
+
+.imgItem
+{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+   @keyframes shadow {
+    0% 
+    {
+        color: white;
+    }
+    10%
+    {
+        color:aqua;
+    }
+    20%
+    {
+        color:saddlebrown;
+    }
+    30%
+    {
+        color:slateblue;
+    }
+    40%
+    {
+        color:salmon;
+    }
+    50% 
+    {
+        color:green;
+
+    }
+    60%
+    {
+        color:forestgreen
+    }
+    70%
+    {
+        color:yellow
+    }
+    80%
+    {
+        color:peru
+    }
+    90%
+    {
+        color:olive
+    }
+    100% {
+        color:blue;
+
+    }
+}
