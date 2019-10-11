@@ -53,7 +53,6 @@ namespace WebApplication1.Controllers
                 tempBooks.Images = Books.Images;
                 tempBooks.Pages = Books.Pages;
                 tempBooks.Price = Books.Price;
-                bookService.SaveUpdate(Books);
 
             }
             else

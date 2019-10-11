@@ -1,17 +1,30 @@
-﻿using System;
+﻿using AutoMapper;
+using BLL.DTO;
+using BLL.Interfaces;
+using DLL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
     public class MainController : Controller
     {
-        // GET: Main
+        IBookService bookService;
+
+        public MainController(IBookService serv)
+        {
+            bookService = serv;
+        }
         public ActionResult Index()
         {
-            return View();
+            IEnumerable<BookDTO> bookDtos = bookService.GetBook();
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BookDTO, BookViewModel>()).CreateMapper();
+            var book = mapper.Map<IEnumerable<BookDTO>, List<BookViewModel>>(bookDtos);
+            return View(book);
         }
 
         // GET: Main/Details/5
@@ -20,48 +33,37 @@ namespace WebApplication1.Controllers
             return View();
         }
 
-        // GET: Main/Create
-        public ActionResult Create()
+        public ActionResult EditOrCreate(int? id)
         {
-            return View();
+            BookViewModel book = new BookViewModel();
+            if (id != null)
+            {
+                var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BookDTO, BookViewModel>()).CreateMapper();
+                book = mapper.Map<BookDTO, BookViewModel>(bookService.GetBook(id));
+            }
+            return View(book);
+
         }
 
-        // POST: Main/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult EditOrCreate(BookViewModel Books)
         {
-            try
+            if (Books.Id != 0)
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                BookDTO book = new BookDTO();
+                book.Images = Books.Images;
+                book.Pages = Books.Pages;
+                book.Price = Books.Price;
+                book.Title = Books.Title;
+                book.AuthorId = Books.AuthorId;
+                bookService.SaveUpdate(book);
             }
-            catch
+            else
             {
-                return View();
+                var bookDto = new BookDTO { Images = Books.Images, AuthorId = Books.AuthorId, Pages = Books.Pages, Price = Books.Price, Title = Books.Title };
+                bookService.MakeBook(bookDto);
             }
-        }
-
-        // GET: Main/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Main/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToActionPermanent("Index", "Books");
         }
 
         // GET: Main/Delete/5

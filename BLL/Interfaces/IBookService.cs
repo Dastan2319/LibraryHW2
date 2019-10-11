@@ -13,7 +13,7 @@ namespace BLL.Interfaces
         void MakeBook(BookDTO orderDto);
         BookDTO GetBook(int? id);
         IEnumerable<BookDTO> GetBook();
-        void SaveUpdate(Books orderDto);
+        void SaveUpdate(BookDTO orderDto);
         void Dispose();
     }
 }

@@ -58,7 +58,7 @@ namespace BLL.Service
             db.Save();
         }
 
-        public void SaveUpdate(Books orderDto)
+        public void SaveUpdate(BookDTO orderDto)
         {
             Books book = new Books
             {
