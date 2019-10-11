@@ -58,13 +58,9 @@
     <Compile Include="Entity\Books.cs" />
     <Compile Include="Entity\Ganre.cs" />
     <Compile Include="Entity\MyContextInitializer.cs" />
-    <Compile Include="Migrations\201910101311391_first.cs" />
-    <Compile Include="Migrations\201910101311391_first.Designer.cs">
-      <DependentUpon>201910101311391_first.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910101400318_passwordForUsers.cs" />
-    <Compile Include="Migrations\201910101400318_passwordForUsers.Designer.cs">
-      <DependentUpon>201910101400318_passwordForUsers.cs</DependentUpon>
+    <Compile Include="Migrations\201910101603304_first.cs" />
+    <Compile Include="Migrations\201910101603304_first.Designer.cs">
+      <DependentUpon>201910101603304_first.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model1.cs" />
@@ -84,11 +80,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201910101311391_first.resx">
-      <DependentUpon>201910101311391_first.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910101400318_passwordForUsers.resx">
-      <DependentUpon>201910101400318_passwordForUsers.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201910101603304_first.resx">
+      <DependentUpon>201910101603304_first.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

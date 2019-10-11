@@ -5,6 +5,7 @@ using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models;
@@ -20,12 +21,13 @@ namespace WebApplication1.Controllers
             usersService = serv;
         }
         [HttpGet]
-        public ActionResult Login()
+        public ActionResult Login(string returnUrl)
         {
+            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
         [HttpPost]
-        public ActionResult Login(LoginViewModel login)
+        public ActionResult Login(LoginViewModel login, string returnUrl)
         {
             if (ModelState.IsValid)
             {
@@ -34,15 +36,20 @@ namespace WebApplication1.Controllers
                 usersDtos.password = login.Password;
                 UsersDTO user= usersService.GetUsers(usersDtos);
                 if (user.FIO == "true")
-                {
-                    return RedirectToAction("Register", "Account");
+                {             
+                    RedirectToLocal(returnUrl);
+                    return View(login);
                 }
                 else
                 {
                     return View();
                 }
             }
-            return View();
+            else
+            {
+                return View();
+            }
+           
         }
         [HttpGet]
         public ActionResult Register()
@@ -63,5 +70,15 @@ namespace WebApplication1.Controllers
             return View();
         }
 
+        private ActionResult RedirectToLocal(string returnUrl)
+        {
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+       
     }
 }
