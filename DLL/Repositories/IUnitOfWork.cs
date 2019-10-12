@@ -14,6 +14,7 @@ namespace DLL.Repositories
         IRepository<Books> Books { get; }
         IRepository<Ganre> Ganre { get; }
         IRepository<Users> Users { get; }
+        IRepository<Message> Message { get; }
         void Save();
     }
 }

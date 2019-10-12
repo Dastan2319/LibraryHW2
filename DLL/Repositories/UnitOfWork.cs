@@ -15,7 +15,9 @@ namespace WebApplication1.Repositories
         private UsersRepository usersRepository;
         private AuthorsRepository authorsRepository;
         private GanreRepository ganreRepository;
-        public IRepository<Books> Books
+        private MessageRepository messageRepository;
+
+        public IRepository<Books> Books        
         {
             get
             {
@@ -52,6 +54,16 @@ namespace WebApplication1.Repositories
                 if (ganreRepository == null)
                     ganreRepository = new GanreRepository(db);
                 return ganreRepository;
+            }
+        }
+
+        public IRepository<Message> Message
+        {
+            get
+            {
+                if (messageRepository == null)
+                    messageRepository = new MessageRepository(db);
+                return messageRepository;
             }
         }
 

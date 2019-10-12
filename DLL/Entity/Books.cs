@@ -8,11 +8,6 @@ namespace DLL
 
     public partial class Books
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Books()
-        {
-            TakedBooks = new HashSet<TakedBooks>();
-        }
 
         public int Id { get; set; }
 
@@ -27,8 +22,6 @@ namespace DLL
         public int? Price { get; set; }
         public string Images { get; set; }
         public virtual Authors Authors { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TakedBooks> TakedBooks { get; set; }
+        
     }
 }

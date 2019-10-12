@@ -19,9 +19,10 @@ namespace DLL
      
         public virtual DbSet<Authors> Authors { get; set; }
         public virtual DbSet<Books> Books { get; set; }
-        public virtual DbSet<TakedBooks> TakedBooks { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<Ganre> Ganre { get; set; }
+        public virtual DbSet<Message> Message { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Authors>()

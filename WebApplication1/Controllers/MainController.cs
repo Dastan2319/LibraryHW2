@@ -30,6 +30,7 @@ namespace WebApplication1.Controllers
         // GET: Main/Details/5
         public ActionResult Details(int id)
         {
+
             return View();
         }
 
@@ -55,7 +56,7 @@ namespace WebApplication1.Controllers
                 book.Pages = Books.Pages;
                 book.Price = Books.Price;
                 book.Title = Books.Title;
-                book.AuthorId = Books.AuthorId;
+                //book.AuthorId = id Пользователя
                 bookService.SaveUpdate(book);
             }
             else
