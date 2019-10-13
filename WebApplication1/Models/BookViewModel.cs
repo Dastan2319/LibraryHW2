@@ -14,6 +14,6 @@ namespace WebApplication1.Models
         public int? Pages { get; set; }
         public int? Price { get; set; }
         public string Images { get; set; }
-        public IEnumerable<MessageDTO> message { get; set; }
+        public IList<MessageDTO> message { get; set; }
     }
 }

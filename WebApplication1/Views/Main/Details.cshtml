@@ -50,14 +50,34 @@
     </dl>
 </div>
 
-<div>
-    @foreach(var item in )
-    {
+@Html.ActionLink("Add Comment","Comment", "Main") ;
 
+@*@using (Html.BeginForm("Comment", "Main", FormMethod.Post))
+    {
+        <input type="hidden" value="@ViewBag.BookId" name="bookId" />
+    <table>
+        <tr>
+            <td><p>Введите свой Id</p></td>
+            <td><input type="text" name="authorId" /> </td>
+        </tr>
+        <tr>
+            <td><p>Введите комментарий:</p></td>
+            <td><input type="text" name="message" /> </td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Отправить" /> </td>
+            <td></td>
+        </tr>
+    </table>
+    }*@
+<div>
+    @foreach (var item in Model.message)
+    {
+        <p>Author: @item.authorId</p>
+        <p>Message:@item.message</p>
     }
 </div>
 
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

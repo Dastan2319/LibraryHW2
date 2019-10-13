@@ -16,6 +16,7 @@ namespace WebApplication1.Util
             Bind<IBookService>().To<BookService>();
             Bind<IUsersService>().To<UsersService>();
             Bind<IGanreService>().To<GanreService>();
+            Bind<IMessageService>().To<MessageService>();
         }
     }
 }

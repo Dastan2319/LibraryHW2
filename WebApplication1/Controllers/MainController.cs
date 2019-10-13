@@ -13,6 +13,7 @@ namespace WebApplication1.Controllers
 {
     public class MainController : Controller
     {
+        private int BookId;
         IBookService bookService;
         IMessageService messageService;
         public MainController(IBookService serv, IMessageService mesServ)
@@ -31,10 +32,24 @@ namespace WebApplication1.Controllers
         // GET: Main/Details/5
         public ActionResult Details(int id)
         {
+            BookId = id;
             BookViewModel book = new BookViewModel();
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BookDTO, BookViewModel>()).CreateMapper();
             book = mapper.Map<BookDTO, BookViewModel>(bookService.GetBook(id));
             return View(book);
+        }
+        [HttpGet]
+        public ActionResult Comment()
+        {
+            MessageViewModel comment = new MessageViewModel();
+            return View(comment);
+        }
+        [HttpPost]
+        public ActionResult Comment(MessageViewModel message) 
+        {
+            var messageDto = new MessageDTO { bookId= BookId, authorId=message.authorId,message=message.message };
+            messageService.MakeMessage(messageDto);
+            return RedirectToActionPermanent("Index", "Details/"+ BookId);
         }
 
         public ActionResult EditOrCreate(int? id)
@@ -54,20 +69,20 @@ namespace WebApplication1.Controllers
         {
             if (Books.Id != 0)
             {
-                BookDTO book = new BookDTO();
-                book.Images = Books.Images;
-                book.Pages = Books.Pages;
-                book.Price = Books.Price;
-                book.Title = Books.Title;
-                book.AuthorId = Books.AuthorId;
-                bookService.SaveUpdate(book);
+                var tempBook = bookService.GetBook(Books.Id);
+                tempBook.Images = Books.Images;
+                tempBook.Pages = Books.Pages;
+                tempBook.Price = Books.Price;
+                tempBook.Title = Books.Title;
+                tempBook.AuthorId = Books.AuthorId;
+                bookService.SaveUpdate(tempBook);
             }
             else
             {
-                var bookDto = new BookDTO { Images = Books.Images,/* AuthorId = id Пользователя*/ Pages = Books.Pages, Price = Books.Price, Title = Books.Title };
-                bookService.MakeBook(bookDto);
+                var bookDto = new BookDTO { Images = Books.Images, AuthorId =Books.AuthorId /*id Пользователя*/, Pages = Books.Pages, Price = Books.Price, Title = Books.Title };
+               bookService.MakeBook(bookDto);
             }
-            return RedirectToActionPermanent("Index", "Books");
+            return RedirectToActionPermanent("Index", "Main");
         }
 
         // GET: Main/Delete/5

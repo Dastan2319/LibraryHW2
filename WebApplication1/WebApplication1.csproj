@@ -228,6 +228,7 @@
     <Compile Include="Models\ExternalLoginListViewModel.cs" />
     <Compile Include="Models\GanreViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\MessageViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
     <Compile Include="Models\UsersViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -289,6 +290,7 @@
     <Content Include="Views\Main\Index.cshtml" />
     <Content Include="Views\Main\EditOrCreate.cshtml" />
     <Content Include="Views\Main\Details.cshtml" />
+    <Content Include="Views\Main\Comment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

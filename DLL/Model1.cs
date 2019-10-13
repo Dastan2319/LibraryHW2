@@ -33,7 +33,7 @@ namespace DLL
                 .Property(e => e.LastName)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Authors>()
+            modelBuilder.Entity<Users>()
                 .HasMany(e => e.Books)
                 .WithRequired(e => e.Authors)
                 .HasForeignKey(e => e.AuthorId)

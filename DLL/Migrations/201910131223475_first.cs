@@ -23,32 +23,17 @@ namespace DLL.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         AuthorId = c.Int(nullable: false),
-                        Title = c.String(nullable: false, maxLength: 150, unicode: false),
+                        Title = c.String(unicode: false),
                         Pages = c.Int(),
                         Price = c.Int(),
                         Images = c.String(),
+                        Authors_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Authors", t => t.AuthorId)
-                .Index(t => t.AuthorId);
-            
-            CreateTable(
-                "dbo.TakedBooks",
-                c => new
-                    {
-                        id = c.Int(nullable: false, identity: true),
-                        UserId = c.Int(nullable: false),
-                        BookId = c.Int(nullable: false),
-                        Books_Id = c.Int(),
-                        date = c.DateTime(nullable: false),
-                        Books_Id1 = c.Int(),
-                        Users_Id = c.Int(),
-                    })
-                .PrimaryKey(t => t.id)
-                .ForeignKey("dbo.Books", t => t.Books_Id1)
-                .ForeignKey("dbo.Users", t => t.Users_Id)
-                .Index(t => t.Books_Id1)
-                .Index(t => t.Users_Id);
+                .ForeignKey("dbo.Users", t => t.AuthorId)
+                .ForeignKey("dbo.Authors", t => t.Authors_Id)
+                .Index(t => t.AuthorId)
+                .Index(t => t.Authors_Id);
             
             CreateTable(
                 "dbo.Users",
@@ -69,19 +54,28 @@ namespace DLL.Migrations
                     })
                 .PrimaryKey(t => t.Id);
             
+            CreateTable(
+                "dbo.Messages",
+                c => new
+                    {
+                        id = c.Int(nullable: false, identity: true),
+                        authorId = c.Int(nullable: false),
+                        bookId = c.Int(nullable: false),
+                        message = c.String(),
+                    })
+                .PrimaryKey(t => t.id);
+            
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.Books", "AuthorId", "dbo.Authors");
-            DropForeignKey("dbo.TakedBooks", "Users_Id", "dbo.Users");
-            DropForeignKey("dbo.TakedBooks", "Books_Id1", "dbo.Books");
-            DropIndex("dbo.TakedBooks", new[] { "Users_Id" });
-            DropIndex("dbo.TakedBooks", new[] { "Books_Id1" });
+            DropForeignKey("dbo.Books", "Authors_Id", "dbo.Authors");
+            DropForeignKey("dbo.Books", "AuthorId", "dbo.Users");
+            DropIndex("dbo.Books", new[] { "Authors_Id" });
             DropIndex("dbo.Books", new[] { "AuthorId" });
+            DropTable("dbo.Messages");
             DropTable("dbo.Ganres");
             DropTable("dbo.Users");
-            DropTable("dbo.TakedBooks");
             DropTable("dbo.Books");
             DropTable("dbo.Authors");
         }

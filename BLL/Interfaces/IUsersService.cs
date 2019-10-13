@@ -12,8 +12,9 @@ namespace BLL.Interfaces
     {
         void MakeUsers(UsersDTO orderDto);
         UsersDTO GetUsers(UsersDTO id);
+        UsersDTO GetUsers(int? id);
         IEnumerable<UsersDTO> GetUsers();
-        void SaveUpdate(Users orderDto);
+        void SaveUpdate(UsersDTO orderDto);
         void Dispose();
     }
 }

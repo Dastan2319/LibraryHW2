@@ -36,8 +36,8 @@ namespace WebApplication1.Controllers
 
             if (id != null)
             {
-                //var mapper = new MapperConfiguration(cfg => cfg.CreateMap<UsersDTO, UsersViewModel>()).CreateMapper();
-                //user = mapper.Map<UsersDTO, UsersViewModel>(usersService.GetUsers(id));
+                var mapper = new MapperConfiguration(cfg => cfg.CreateMap<UsersDTO, UsersViewModel>()).CreateMapper();
+                user = mapper.Map<UsersDTO, UsersViewModel>(usersService.GetUsers(id));
             }
             return View(user);
 
@@ -49,7 +49,12 @@ namespace WebApplication1.Controllers
 
             if (Users.Id != 0)
             {
-                usersService.SaveUpdate(Users);
+                var tempUser = usersService.GetUsers(Users.Id);
+                tempUser.FIO = Users.FIO;
+                tempUser.Id = Users.Id;
+                tempUser.password = Users.password;
+
+                usersService.SaveUpdate(tempUser);
             }
             else
             {

@@ -2,6 +2,7 @@
 using BLL.DTO;
 using BLL.Interfaces;
 using DLL;
+using DLL.Entity;
 using DLL.Repositories;
 using System;
 using System.Collections.Generic;
@@ -14,9 +15,10 @@ namespace BLL.Service
     public class BookService : IBookService
     {
         IUnitOfWork db { get; set; }
-
-        public BookService(IUnitOfWork uow)
+        IMessageService msg { get; set; }
+        public BookService(IUnitOfWork uow,IMessageService ims)
         {
+            msg = ims;
             db = uow;
         }
 
@@ -30,7 +32,7 @@ namespace BLL.Service
             if (id != null)
             {
                 var book = db.Books.Get(id);
-                var message = db.Message.GetAll().Where(x=>x.bookId==book.Id);
+                var message=msg.GetMessage().Where(x => x.bookId == book.Id);
                 return new BookDTO { Title= book.Title,Pages= book.Pages,Price= book.Price,Images= book.Images,message= message };
             }
             else
@@ -47,13 +49,14 @@ namespace BLL.Service
 
         public void MakeBook(BookDTO orderDto)
         {
+            Users user = db.Users.Get(orderDto.AuthorId);
             Books book = new Books
             {
                 Title = orderDto.Title,
                 Price = orderDto.Price,
                 Pages = orderDto.Pages,
                 Images = orderDto.Images,
-                
+                AuthorId= user.Id
             };
             db.Books.Create(book);
             db.Save();

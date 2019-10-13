@@ -62,15 +62,31 @@ namespace BLL.Service
             db.Save();
         }
 
-        public void SaveUpdate(Users orderDto)
+        public void SaveUpdate(UsersDTO orderDto)
         {
             Users users = new Users
             {
+                Id=orderDto.Id,
                 FIO = orderDto.FIO,
                 password = orderDto.password
             };
             db.Users.Update(users);
             db.Save();
         }
+
+        public UsersDTO GetUsers(int? id)
+        {
+            if (id != null)
+            {
+                var user = db.Users.Get(id);
+                return new UsersDTO{ FIO= user.FIO,password= user.password };
+            }
+            else
+            {
+                return new UsersDTO();
+            }
+        }
+
+        
     }
 }

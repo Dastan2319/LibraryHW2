@@ -59,17 +59,9 @@
     <Compile Include="Entity\Ganre.cs" />
     <Compile Include="Entity\Message.cs" />
     <Compile Include="Entity\MyContextInitializer.cs" />
-    <Compile Include="Migrations\201910101603304_first.cs" />
-    <Compile Include="Migrations\201910101603304_first.Designer.cs">
-      <DependentUpon>201910101603304_first.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910121352008_addMessage.cs" />
-    <Compile Include="Migrations\201910121352008_addMessage.Designer.cs">
-      <DependentUpon>201910121352008_addMessage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910130412015_addBookID.cs" />
-    <Compile Include="Migrations\201910130412015_addBookID.Designer.cs">
-      <DependentUpon>201910130412015_addBookID.cs</DependentUpon>
+    <Compile Include="Migrations\201910131223475_first.cs" />
+    <Compile Include="Migrations\201910131223475_first.Designer.cs">
+      <DependentUpon>201910131223475_first.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model1.cs" />
@@ -89,14 +81,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201910101603304_first.resx">
-      <DependentUpon>201910101603304_first.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910121352008_addMessage.resx">
-      <DependentUpon>201910121352008_addMessage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910130412015_addBookID.resx">
-      <DependentUpon>201910130412015_addBookID.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201910131223475_first.resx">
+      <DependentUpon>201910131223475_first.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
