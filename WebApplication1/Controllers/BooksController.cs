@@ -15,17 +15,19 @@ namespace WebApplication1.Controllers
     public class BooksController : Controller
     {
         IBookService bookService;
-
-        public BooksController(IBookService serv)
+        IMessageService messageService;
+        public BooksController(IBookService serv,IMessageService mesServ)
         {
+            messageService = mesServ;
             bookService = serv;
         }
 
         public ActionResult Index()
         {
-            IEnumerable<BookDTO> bookDtos = bookService.GetBook();
+            IEnumerable<BookDTO> bookDtos = bookService.GetBook();            
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BookDTO, BookViewModel>()).CreateMapper();
             var book = mapper.Map<IEnumerable<BookDTO>, List<BookViewModel>>(bookDtos);
+            
             return View(book);
         }
 

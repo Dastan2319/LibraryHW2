@@ -10,6 +10,7 @@ namespace BLL.DTO
     {
         public int id { get; set; }
         public int authorId { get; set; }
+        public int bookId { get; set; }
         public string message { get; set; }
     }
 }

@@ -30,7 +30,8 @@ namespace BLL.Service
             if (id != null)
             {
                 var book = db.Books.Get(id);
-                return new BookDTO { Title= book.Title,Pages= book.Pages,Price= book.Price,Images= book.Images};
+                var message = db.Message.GetAll().Where(x=>x.bookId==book.Id);
+                return new BookDTO { Title= book.Title,Pages= book.Pages,Price= book.Price,Images= book.Images,message= message };
             }
             else
             {

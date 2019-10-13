@@ -30,7 +30,7 @@ namespace BLL.Service
             if (id != null)
             {
                 var book = db.Message.Get(id);
-                return new MessageDTO { authorId=book.authorId,message=book.message };
+                return new MessageDTO { authorId=book.authorId,bookId=book.bookId, message=book.message };
             }
             else
             {
@@ -49,8 +49,8 @@ namespace BLL.Service
             Message message = new Message
             {
                 authorId=orderDto.authorId,
-                message=orderDto.message
-
+                message=orderDto.message,
+                bookId=orderDto.bookId
             };
             db.Message.Create(message);
             db.Save();
@@ -61,7 +61,8 @@ namespace BLL.Service
             Message message = new Message
             {
                 authorId= orderDto.authorId,
-                message= orderDto.message
+                message= orderDto.message,
+                bookId=orderDto.bookId
             };
             db.Message.Update(message);
             db.Save();

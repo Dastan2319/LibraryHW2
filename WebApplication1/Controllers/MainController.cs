@@ -14,9 +14,10 @@ namespace WebApplication1.Controllers
     public class MainController : Controller
     {
         IBookService bookService;
-
-        public MainController(IBookService serv)
+        IMessageService messageService;
+        public MainController(IBookService serv, IMessageService mesServ)
         {
+            messageService = mesServ;
             bookService = serv;
         }
         public ActionResult Index()
@@ -30,8 +31,10 @@ namespace WebApplication1.Controllers
         // GET: Main/Details/5
         public ActionResult Details(int id)
         {
-
-            return View();
+            BookViewModel book = new BookViewModel();
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BookDTO, BookViewModel>()).CreateMapper();
+            book = mapper.Map<BookDTO, BookViewModel>(bookService.GetBook(id));
+            return View(book);
         }
 
         public ActionResult EditOrCreate(int? id)
@@ -56,12 +59,12 @@ namespace WebApplication1.Controllers
                 book.Pages = Books.Pages;
                 book.Price = Books.Price;
                 book.Title = Books.Title;
-                //book.AuthorId = id Пользователя
+                book.AuthorId = Books.AuthorId;
                 bookService.SaveUpdate(book);
             }
             else
             {
-                var bookDto = new BookDTO { Images = Books.Images, AuthorId = Books.AuthorId, Pages = Books.Pages, Price = Books.Price, Title = Books.Title };
+                var bookDto = new BookDTO { Images = Books.Images,/* AuthorId = id Пользователя*/ Pages = Books.Pages, Price = Books.Price, Title = Books.Title };
                 bookService.MakeBook(bookDto);
             }
             return RedirectToActionPermanent("Index", "Books");
