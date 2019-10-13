@@ -45,23 +45,39 @@ namespace WebApplication1.Controllers
             return View(comment);
         }
         [HttpPost]
-        public ActionResult Comment(MessageViewModel message) 
+        public ActionResult Comment(MessageDTO message) 
         {
-            var messageDto = new MessageDTO { bookId= BookId, authorId=message.authorId,message=message.message };
-            messageService.MakeMessage(messageDto);
-            return RedirectToActionPermanent("Index", "Details/"+ BookId);
+            if (ModelState.IsValid)
+            {
+                var messageDto = new MessageDTO { bookId = BookId, authorId = message.authorId, message = message.message };
+                messageService.MakeMessage(messageDto);
+                return RedirectToActionPermanent("Index", "Details/" + BookId);
+            }
+            else
+            {
+                return View(); 
+            }
         }
 
         public ActionResult EditOrCreate(int? id)
         {
             BookViewModel book = new BookViewModel();
-            if (id != null)
+            if (id != null )
             {
                 var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BookDTO, BookViewModel>()).CreateMapper();
                 book = mapper.Map<BookDTO, BookViewModel>(bookService.GetBook(id));
+                
             }
-            return View(book);
+            //if(book.AuthorId=="Мой автор ID")
+            //{
+            //    return View(book);
+            //}
+            //else
+            //{
+            //    return RedirectToActionPermanent("Index", "Main");
+            //}
 
+            return View(book);
         }
 
         [HttpPost]
@@ -88,23 +104,23 @@ namespace WebApplication1.Controllers
         // GET: Main/Delete/5
         public ActionResult Delete(int id)
         {
+            //BookViewModel book = new BookViewModel();
+            //if (id != null)
+            //{
+            //    var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BookDTO, BookViewModel>()).CreateMapper();
+            //    book = mapper.Map<BookDTO, BookViewModel>(bookService.GetBook(id));
+            //}
+            //if(book.AuthorId=="Мой автор ID")
+            //{
+            //bookService.Delete(id);  
+            //    return View(book);
+            //}
+            //else
+            //{
+            //    return RedirectToActionPermanent("Index", "Main");
+            //}
             return View();
         }
-
-        // POST: Main/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        
     }
 }

@@ -22,52 +22,34 @@ namespace WebApplication1.Controllers
             usersService = serv;
         }
 
-        public ActionResult Index()
+        //public ActionResult Index()
+        //{
+        //    IEnumerable<UsersDTO> usersDtos = usersService.GetUsers();
+        //    var mapper = new MapperConfiguration(cfg => cfg.CreateMap<UsersDTO, UsersViewModel>()).CreateMapper();
+        //    var user = mapper.Map<IEnumerable<UsersDTO>, List<UsersViewModel>>(usersDtos);
+        //    return View(user/*.Where(x=>x.Id=="тут id пользователя")*/);
+        //}
+
+        public ActionResult EditOrCreate()
         {
-            IEnumerable<UsersDTO> usersDtos = usersService.GetUsers();
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<UsersDTO, UsersViewModel>()).CreateMapper();
-            var user = mapper.Map<IEnumerable<UsersDTO>, List<UsersViewModel>>(usersDtos);
-            return View(user);
-        }
-
-        public ActionResult EditOrCreate(int? id)
-        {
-            UsersViewModel user = new UsersViewModel();
-
-            if (id != null)
-            {
-                var mapper = new MapperConfiguration(cfg => cfg.CreateMap<UsersDTO, UsersViewModel>()).CreateMapper();
-                user = mapper.Map<UsersDTO, UsersViewModel>(usersService.GetUsers(id));
-            }
-            return View(user);
-
+            //UsersViewModel user = new UsersViewModel();
+            //var mapper = new MapperConfiguration(cfg => cfg.CreateMap<UsersDTO, UsersViewModel>()).CreateMapper();
+            //user = mapper.Map<UsersDTO, UsersViewModel>(usersService.GetUsers("id пользователя"));            
+            //return View(user);
+            return View();
         }
 
         [HttpPost]
-        public ActionResult EditOrCreate(Users Users)
+        public ActionResult EditOrCreate(UsersViewModel Users)
         {
+            var tempUser = usersService.GetUsers(Users.Id);
+              tempUser.password = Users.password;
 
-            if (Users.Id != 0)
-            {
-                var tempUser = usersService.GetUsers(Users.Id);
-                tempUser.FIO = Users.FIO;
-                tempUser.Id = Users.Id;
-                tempUser.password = Users.password;
+              usersService.SaveUpdate(tempUser);
+            
 
-                usersService.SaveUpdate(tempUser);
-            }
-            else
-            {
-                var usersDto = new UsersDTO { FIO=Users.FIO };
-                usersService.MakeUsers(usersDto);
-            }
-
-            return RedirectToActionPermanent("Index", "Users");
+            return RedirectToActionPermanent("Index", "EditOrCreate");
         }
-
-        public ActionResult Delete(int id)
-        {
-            return RedirectToAction("Index", "Users");
-        }
+        
     }
 }

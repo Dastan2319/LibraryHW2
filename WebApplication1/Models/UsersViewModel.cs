@@ -9,5 +9,6 @@ namespace WebApplication1.Models
     {
         public int Id { get; set; }
         public string FIO { get; set; }
+        public string password { get; set; }
     }
 }

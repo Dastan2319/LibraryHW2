@@ -14,6 +14,7 @@ namespace BLL.Interfaces
         BookDTO GetBook(int? id);
         IEnumerable<BookDTO> GetBook();
         void SaveUpdate(BookDTO orderDto);
+        void Delete(int id);
         void Dispose();
     }
 }

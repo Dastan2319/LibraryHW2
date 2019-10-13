@@ -33,7 +33,7 @@ namespace BLL.Service
             {
                 var book = db.Books.Get(id);
                 var message=msg.GetMessage().Where(x => x.bookId == book.Id);
-                return new BookDTO { Title= book.Title,Pages= book.Pages,Price= book.Price,Images= book.Images,message= message };
+                return new BookDTO {Id=book.Id,AuthorId=book.AuthorId, Title= book.Title,Pages= book.Pages,Price= book.Price,Images= book.Images,message= message };
             }
             else
             {
@@ -64,8 +64,11 @@ namespace BLL.Service
 
         public void SaveUpdate(BookDTO orderDto)
         {
+            Users user = db.Users.Get(orderDto.AuthorId);
             Books book = new Books
             {
+                Id=orderDto.Id,
+                AuthorId = user.Id,
                 Title = orderDto.Title,
                 Price = orderDto.Price,
                 Pages = orderDto.Pages,
@@ -73,6 +76,11 @@ namespace BLL.Service
             };
             db.Books.Update(book);
             db.Save();
+        }
+
+        public void Delete(int id)
+        {
+            db.Books.Delete(id);
         }
     }
 }

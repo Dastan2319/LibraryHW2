@@ -278,8 +278,6 @@
     <Content Include="Views\Author\Index.cshtml" />
     <Content Include="Views\Author\EditOrCreate.cshtml" />
     <Content Include="Views\Books\Index.cshtml" />
-    <Content Include="Views\Users\Index.cshtml" />
-    <Content Include="Views\Users\EditOrCreate.cshtml" />
     <Content Include="Views\Author\Create.cshtml" />
     <Content Include="Views\Ganre\Index.cshtml" />
     <Content Include="Views\Ganre\EditOrCreate.cshtml" />
@@ -291,6 +289,7 @@
     <Content Include="Views\Main\EditOrCreate.cshtml" />
     <Content Include="Views\Main\Details.cshtml" />
     <Content Include="Views\Main\Comment.cshtml" />
+    <Content Include="Views\Users\EditOrCreate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
