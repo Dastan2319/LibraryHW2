@@ -211,7 +211,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AuthorController.cs" />
     <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Controllers\GanreController.cs" />
     <Compile Include="Controllers\MainController.cs" />
@@ -223,7 +222,6 @@
     <Compile Include="Helpers\FiltersHelper.cs" />
     <Compile Include="Helpers\Log4NetHelper.cs" />
     <Compile Include="Logger.cs" />
-    <Compile Include="Models\AuthorViewModel.cs" />
     <Compile Include="Models\BookViewModel.cs" />
     <Compile Include="Models\ExternalLoginListViewModel.cs" />
     <Compile Include="Models\GanreViewModel.cs" />
@@ -275,10 +273,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Author\Index.cshtml" />
-    <Content Include="Views\Author\EditOrCreate.cshtml" />
     <Content Include="Views\Books\Index.cshtml" />
-    <Content Include="Views\Author\Create.cshtml" />
     <Content Include="Views\Ganre\Index.cshtml" />
     <Content Include="Views\Ganre\EditOrCreate.cshtml" />
     <Content Include="Views\Books\EditOrCreate.cshtml" />

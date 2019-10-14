@@ -13,7 +13,6 @@ namespace WebApplication1.Repositories
         private Model1 db = new Model1();
         private BookRepository bookRepository;
         private UsersRepository usersRepository;
-        private AuthorsRepository authorsRepository;
         private GanreRepository ganreRepository;
         private MessageRepository messageRepository;
 
@@ -34,15 +33,6 @@ namespace WebApplication1.Repositories
                 if (usersRepository == null)
                     usersRepository = new UsersRepository(db);
                 return usersRepository;
-            }
-        }
-        public IRepository<Authors> Authors
-        {
-            get
-            {
-                if (authorsRepository == null)
-                    authorsRepository = new AuthorsRepository(db);
-                return authorsRepository;
             }
         }
         

@@ -17,7 +17,6 @@ namespace DLL
         {
         }
      
-        public virtual DbSet<Authors> Authors { get; set; }
         public virtual DbSet<Books> Books { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<Ganre> Ganre { get; set; }
@@ -25,13 +24,6 @@ namespace DLL
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Authors>()
-                .Property(e => e.FirstName)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Authors>()
-                .Property(e => e.LastName)
-                .IsUnicode(false);
 
             modelBuilder.Entity<Users>()
                 .HasMany(e => e.Books)

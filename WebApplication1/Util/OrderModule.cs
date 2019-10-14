@@ -12,7 +12,6 @@ namespace WebApplication1.Util
     {
         public override void Load()
         {
-            Bind<IAuthorService>().To<AuthorService>();
             Bind<IBookService>().To<BookService>();
             Bind<IUsersService>().To<UsersService>();
             Bind<IGanreService>().To<GanreService>();

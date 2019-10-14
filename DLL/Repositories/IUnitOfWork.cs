@@ -10,7 +10,6 @@ namespace DLL.Repositories
 {
     public interface IUnitOfWork:IDisposable
     {
-        IRepository<Authors> Authors { get; }
         IRepository<Books> Books { get; }
         IRepository<Ganre> Ganre { get; }
         IRepository<Users> Users { get; }
