@@ -25,10 +25,28 @@
                     <li>@Html.ActionLink("О программе", "About", "Home")</li>
                     <li>@Html.ActionLink("Контакт", "Contact", "Home")</li>
                     @*<li>@Html.ActionLink("Авторы", "Index", "Author")</li>
-                    <li>@Html.ActionLink("Пользователи", "Index", "Users")</li>
-                    <li>@Html.ActionLink("Книги", "Index", "Books")</li>*@
+                        <li>@Html.ActionLink("Пользователи", "Index", "Users")</li>
+                        <li>@Html.ActionLink("Книги", "Index", "Books")</li>*@
                 </ul>
-                @Html.Partial("_LoginPartial")
+                @{ var name = Request.Cookies["login"]; }
+                @if (name != null)
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            @Html.ActionLink("Здравствуйте, " + name.Value,"Index","Main")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Exit", "Exit", "Account")
+                        </li>
+                    </ul>
+                }
+                else
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>@Html.ActionLink("Регистрация", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                        <li>@Html.ActionLink("Выполнить вход", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                    </ul>
+                }
             </div>
         </div>
     </div>

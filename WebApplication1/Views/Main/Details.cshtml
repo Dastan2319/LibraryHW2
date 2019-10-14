@@ -50,26 +50,9 @@
     </dl>
 </div>
 
-@Html.ActionLink("Add Comment","Comment", "Main") ;
+@*@Html.ActionLink("Add Comment","Comment", "Main") ;*@
+@{Html.RenderPartial("_CommentPartial",new WebApplication1.Models.MessageViewModel());}
 
-@*@using (Html.BeginForm("Comment", "Main", FormMethod.Post))
-    {
-        <input type="hidden" value="@ViewBag.BookId" name="bookId" />
-    <table>
-        <tr>
-            <td><p>Введите свой Id</p></td>
-            <td><input type="text" name="authorId" /> </td>
-        </tr>
-        <tr>
-            <td><p>Введите комментарий:</p></td>
-            <td><input type="text" name="message" /> </td>
-        </tr>
-        <tr>
-            <td><input type="submit" value="Отправить" /> </td>
-            <td></td>
-        </tr>
-    </table>
-    }*@
 <div>
     @foreach (var item in Model.message)
     {

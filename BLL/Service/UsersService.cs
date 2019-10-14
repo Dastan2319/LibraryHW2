@@ -32,7 +32,7 @@ namespace BLL.Service
                 
                 if (users!= null)
                 {
-                    return new UsersDTO { FIO = "true"};
+                    return new UsersDTO { Id=users.Id, FIO =users.FIO};
                 }
                 else
                 {

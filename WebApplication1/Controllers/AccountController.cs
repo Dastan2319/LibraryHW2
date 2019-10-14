@@ -35,10 +35,11 @@ namespace WebApplication1.Controllers
                 usersDtos.FIO = login.Email;
                 usersDtos.password = login.Password;
                 UsersDTO user= usersService.GetUsers(usersDtos);
-                if (user.FIO == "true")
-                {             
-                    RedirectToLocal(returnUrl);
-                    return View(login);
+                if (user.FIO !=null)
+                {
+                    HttpContext.Response.Cookies["id"].Value = user.Id+"";
+                    HttpContext.Response.Cookies["login"].Value = user.FIO + "";
+                    return RedirectToAction("Index", "Main");
                 }
                 else
                 {
@@ -70,15 +71,19 @@ namespace WebApplication1.Controllers
             return View();
         }
 
-        private ActionResult RedirectToLocal(string returnUrl)
+        public ActionResult Exit()
         {
-            if (Url.IsLocalUrl(returnUrl))
-            {
-                return Redirect(returnUrl);
-            }
-            return RedirectToAction("Index", "Home");
+            HttpCookie cookie = new HttpCookie("id");
+            cookie.Expires = DateTime.Now.AddDays(-1);
+            Response.Cookies.Add(cookie);
+
+            HttpCookie cookie2 = new HttpCookie("login");
+            cookie2.Expires = DateTime.Now.AddDays(-1);
+            Response.Cookies.Add(cookie2);
+            return RedirectToAction("Login", "Account");
         }
 
-       
+
+
     }
 }
