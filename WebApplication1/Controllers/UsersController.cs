@@ -30,7 +30,7 @@ namespace WebApplication1.Controllers
         //    return View(user/*.Where(x=>x.Id=="тут id пользователя")*/);
         //}
 
-        public ActionResult EditOrCreate()
+        public ActionResult Index()
         {
             //UsersViewModel user = new UsersViewModel();
             //var mapper = new MapperConfiguration(cfg => cfg.CreateMap<UsersDTO, UsersViewModel>()).CreateMapper();
@@ -40,7 +40,7 @@ namespace WebApplication1.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditOrCreate(UsersViewModel Users)
+        public ActionResult Index(UsersViewModel Users)
         {
             var tempUser = usersService.GetUsers(Users.Id);
               tempUser.password = Users.password;

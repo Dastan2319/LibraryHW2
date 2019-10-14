@@ -289,7 +289,7 @@
     <Content Include="Views\Main\EditOrCreate.cshtml" />
     <Content Include="Views\Main\Details.cshtml" />
     <Content Include="Views\Main\Comment.cshtml" />
-    <Content Include="Views\Users\EditOrCreate.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
