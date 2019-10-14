@@ -38,7 +38,7 @@
             @Html.DisplayFor(modelItem => item.Price)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Images)
+            <img src="@item.Images" width="200px" height="100px"/>
         </td>
         <td>
             @Html.ActionLink("Edit", "EditOrCreate", new { id=item.Id }) |

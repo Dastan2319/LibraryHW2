@@ -40,10 +40,10 @@ namespace WebApplication1.Controllers
         }
         
         [HttpPost]
-        public ActionResult Comment(MessageViewModel message) 
+        public ActionResult Comment(string message) 
         {
                 var authorID=Int32.Parse(Request.Cookies["id"].Value);
-                var messageDto = new MessageDTO { bookId = BookId, authorId =authorID, message = message.message };
+                var messageDto = new MessageDTO { bookId = BookId, authorId =authorID, message = message };
                 messageService.MakeMessage(messageDto);
                 return RedirectToActionPermanent("Index", "Details/" + BookId);
         }
@@ -55,15 +55,19 @@ namespace WebApplication1.Controllers
             {
                 var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BookDTO, BookViewModel>()).CreateMapper();
                 book = mapper.Map<BookDTO, BookViewModel>(bookService.GetBook(id));
-                var authorID = Request.Cookies["id"].Value;
-                if (book.AuthorId == int.Parse(authorID))
-                {                    
-                    return View(book);
-                }
-                else
+                var authorID = Request.Cookies["id"];
+                if(authorID!=null)
                 {
-                    return RedirectToActionPermanent("Index", "Main");
+                    if (book.AuthorId == int.Parse(authorID.Value))
+                    {
+                        return View(book);
+                    }
+                    else
+                    {
+                        return RedirectToActionPermanent("Index", "Main");
+                    }
                 }
+                
 
             }
             return View(book);
@@ -76,40 +80,53 @@ namespace WebApplication1.Controllers
             if (Books.Id != 0)
             {
                 var tempBook = bookService.GetBook(Books.Id);
+                tempBook.Id = Books.Id;
                 tempBook.Images = Books.Images;
                 tempBook.Pages = Books.Pages;
                 tempBook.Price = Books.Price;
                 tempBook.Title = Books.Title;
-                tempBook.AuthorId = Books.AuthorId;
+                tempBook.AuthorId = authorID;
                 bookService.SaveUpdate(tempBook);
             }
             else
             {
                 var bookDto = new BookDTO { Images = Books.Images, AuthorId = authorID, Pages = Books.Pages, Price = Books.Price, Title = Books.Title };
-               bookService.MakeBook(bookDto);
+                bookService.MakeBook(bookDto);
             }
             return RedirectToActionPermanent("Index", "Main");
         }
-
-        // GET: Main/Delete/5
-        public ActionResult Delete(int id)
+        [HttpGet]
+        public ActionResult Delete(int? id)
         {
-            var authorID = Int32.Parse(Request.Cookies["id"].Value);
             BookViewModel book = new BookViewModel();
-            if (id != null)
+            var authorID = Request.Cookies["id"];
+            if (authorID != null)
             {
                 var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BookDTO, BookViewModel>()).CreateMapper();
                 book = mapper.Map<BookDTO, BookViewModel>(bookService.GetBook(id));
-            }
-            if (book.AuthorId == authorID)
-            {
-                bookService.Delete(id);
-                return View(book);
+                if (book.AuthorId == int.Parse(authorID.Value))
+                {
+                    return View(book);
+                }
+                else
+                {
+                    return RedirectToActionPermanent("Index", "Main");
+                }
             }
             else
             {
                 return RedirectToActionPermanent("Index", "Main");
             }
+        }
+        // GET: Main/Delete/5
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            
+            bookService.Delete(id);
+            return RedirectToActionPermanent("Index", "Main");
+
+
         }
         
     }

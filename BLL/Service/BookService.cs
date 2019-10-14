@@ -81,6 +81,7 @@ namespace BLL.Service
         public void Delete(int id)
         {
             db.Books.Delete(id);
+            db.Save();
         }
     }
 }

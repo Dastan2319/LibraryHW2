@@ -79,7 +79,7 @@ namespace BLL.Service
             if (id != null)
             {
                 var user = db.Users.Get(id);
-                return new UsersDTO{ FIO= user.FIO,password= user.password };
+                return new UsersDTO{Id=user.Id, FIO= user.FIO,password= user.password };
             }
             else
             {
