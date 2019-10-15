@@ -13,7 +13,7 @@ namespace DLL.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201910131223475_first"; }
+            get { return "201910151720514_first"; }
         }
         
         string IMigrationMetadata.Source
