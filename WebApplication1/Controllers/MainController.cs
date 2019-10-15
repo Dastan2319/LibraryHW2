@@ -32,7 +32,7 @@ namespace WebApplication1.Controllers
         // GET: Main/Details/5
         public ActionResult Details(int id)
         {
-            BookId = id;
+            HttpContext.Response.Cookies["Bookid"].Value = id + "";
             BookViewModel book = new BookViewModel();
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BookDTO, BookViewModel>()).CreateMapper();
             book = mapper.Map<BookDTO, BookViewModel>(bookService.GetBook(id));
@@ -40,10 +40,11 @@ namespace WebApplication1.Controllers
         }
         
         [HttpPost]
-        public ActionResult Comment(string message) 
+        public ActionResult Comment(string msg) 
         {
-                var authorID=Int32.Parse(Request.Cookies["id"].Value);
-                var messageDto = new MessageDTO { bookId = BookId, authorId =authorID, message = message };
+            var bookID = Int32.Parse(Request.Cookies["Bookid"].Value);
+            var authorID=Int32.Parse(Request.Cookies["id"].Value);
+                var messageDto = new MessageDTO { bookId = bookID, authorId =authorID, message = msg };
                 messageService.MakeMessage(messageDto);
                 return RedirectToActionPermanent("Index", "Details/" + BookId);
         }
