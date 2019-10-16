@@ -50,7 +50,8 @@ namespace BLL.Service
             {
                 authorId=orderDto.authorId,
                 message=orderDto.message,
-                bookId=orderDto.bookId
+                bookId=orderDto.bookId,
+                rating=orderDto.rating
             };
             db.Message.Create(message);
             db.Save();
@@ -58,13 +59,33 @@ namespace BLL.Service
 
         public void SaveUpdate(MessageDTO orderDto)
         {
-            Message message = new Message
+            var msgID =db.Message.GetAll().Where(x => x.authorId == orderDto.authorId & x.bookId == orderDto.bookId).FirstOrDefault();
+            if (msgID != null)
             {
-                authorId= orderDto.authorId,
-                message= orderDto.message,
-                bookId=orderDto.bookId
-            };
-            db.Message.Update(message);
+
+
+                Message message = new Message
+                {
+                    id = msgID.id,
+                    authorId = orderDto.authorId,
+                    message = orderDto.message,
+                    bookId = orderDto.bookId,
+                    rating = orderDto.rating
+                };
+                db.Message.Update(message);
+             
+            }
+            else
+            {
+                Message message = new Message
+                {
+                    authorId = orderDto.authorId,
+                    message = orderDto.message,
+                    bookId = orderDto.bookId,
+                    rating = orderDto.rating
+                };
+                db.Message.Create(message);
+            }
             db.Save();
         }
 

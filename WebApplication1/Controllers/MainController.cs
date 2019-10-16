@@ -55,12 +55,12 @@ namespace WebApplication1.Controllers
         }
         
         [HttpPost]
-        public ActionResult Comment(string msg) 
+        public ActionResult Comment(string msg,string rating) 
         {
             var bookID = Int32.Parse(Request.Cookies["Bookid"].Value);
             var authorID=Int32.Parse(Request.Cookies["id"].Value);
-            var messageDto = new MessageDTO { bookId = bookID, authorId =authorID, message = msg };
-            messageService.MakeMessage(messageDto);
+            var messageDto = new MessageDTO { bookId = bookID, authorId =authorID, message = msg ,rating=int.Parse( rating)};
+            messageService.SaveUpdate(messageDto);
             return RedirectToActionPermanent("Index", "Details/" + bookID);
         }
         [HttpGet]

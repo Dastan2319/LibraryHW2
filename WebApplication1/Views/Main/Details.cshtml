@@ -49,9 +49,9 @@
 
     </dl>
 </div>
-
+<p>Rating:@Html.DisplayFor(model => model.rating)</p>
 @*@Html.ActionLink("Add Comment","Comment", "Main") ;*@
-@{Html.RenderPartial("_CommentPartial",new WebApplication1.Models.MessageViewModel());}
+@{Html.RenderPartial("_CommentPartial", new WebApplication1.Models.MessageViewModel());}
 
 <div>
     @foreach (var item in Model.message)
