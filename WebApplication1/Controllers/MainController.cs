@@ -63,13 +63,11 @@ namespace WebApplication1.Controllers
             messageService.SaveUpdate(messageDto);
             return RedirectToActionPermanent("Index", "Details/" + bookID);
         }
-        [HttpGet]
         public ActionResult EditOrCreate(int? id)
         {
             var authorID = Request.Cookies["id"];
-            if (authorID != null)
-            {
-                BookViewModel book = new BookViewModel();
+            BookViewModel book = new BookViewModel();
+                
                 if (id != null)
                 {
                     var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BookDTO, BookViewModel>()).CreateMapper();
@@ -87,13 +85,7 @@ namespace WebApplication1.Controllers
 
                 }
                 return View(book);
-            }
-            else
-            {
-                return RedirectToActionPermanent("Login", "Account");
-            }
         }
-
         [HttpPost]
         public ActionResult EditOrCreate(BookViewModel Books)
         {

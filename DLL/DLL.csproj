@@ -58,13 +58,9 @@
     <Compile Include="Entity\Ganre.cs" />
     <Compile Include="Entity\Message.cs" />
     <Compile Include="Entity\MyContextInitializer.cs" />
-    <Compile Include="Migrations\201910161309057_first.cs" />
-    <Compile Include="Migrations\201910161309057_first.Designer.cs">
-      <DependentUpon>201910161309057_first.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910161340226_rating.cs" />
-    <Compile Include="Migrations\201910161340226_rating.Designer.cs">
-      <DependentUpon>201910161340226_rating.cs</DependentUpon>
+    <Compile Include="Migrations\201910171746125_first.cs" />
+    <Compile Include="Migrations\201910171746125_first.Designer.cs">
+      <DependentUpon>201910171746125_first.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model1.cs" />
@@ -83,11 +79,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201910161309057_first.resx">
-      <DependentUpon>201910161309057_first.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910161340226_rating.resx">
-      <DependentUpon>201910161340226_rating.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201910171746125_first.resx">
+      <DependentUpon>201910171746125_first.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -33,36 +33,50 @@ namespace WebApplication1.Controllers
 
         public ActionResult EditOrCreate(int? id)
         {
+            var authorID = Request.Cookies["id"];
             BookViewModel book = new BookViewModel();
+
             if (id != null)
             {
                 var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BookDTO, BookViewModel>()).CreateMapper();
                 book = mapper.Map<BookDTO, BookViewModel>(bookService.GetBook(id));
+                if (book.AuthorId == int.Parse(authorID.Value))
+                {
+                    return View(book);
+                }
+                else
+                {
+                    return RedirectToActionPermanent("Index", "Main");
+                }
+
+
+
             }
             return View(book);
 
         }
 
         [HttpPost]
-        public ActionResult EditOrCreate(Books Books)
+        public ActionResult EditOrCreate(BookViewModel Books)
         {
-
+            var authorID = Int32.Parse(Request.Cookies["id"].Value);
             if (Books.Id != 0)
             {
-                var tempBooks = bookService.GetBook(Books.Id);
-                tempBooks.AuthorId = Books.AuthorId;
-                tempBooks.Title = Books.Title;
-                tempBooks.Images = Books.Images;
-                tempBooks.Pages = Books.Pages;
-                tempBooks.Price = Books.Price;
-                bookService.SaveUpdate(tempBooks);
+                var tempBook = bookService.GetBook(Books.Id);
+                tempBook.Id = Books.Id;
+                tempBook.Images = Books.Images;
+                tempBook.Pages = Books.Pages;
+                tempBook.Price = Books.Price;
+                tempBook.Title = Books.Title;
+                tempBook.AuthorId = authorID;
+                bookService.SaveUpdate(tempBook);
             }
             else
             {
-                var bookDto = new BookDTO {Images= Books.Images,AuthorId= Books.AuthorId,Pages= Books.Pages,Price= Books.Price,Title= Books.Title};
+                var bookDto = new BookDTO { Images = Books.Images, AuthorId = authorID, Pages = Books.Pages, Price = Books.Price, Title = Books.Title };
                 bookService.MakeBook(bookDto);
             }
-            return RedirectToActionPermanent("Index", "Books");
+            return RedirectToActionPermanent("Index", "Main");
         }
 
         public ActionResult Delete(int id)

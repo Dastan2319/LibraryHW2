@@ -280,11 +280,11 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Main\Index.cshtml" />
-    <Content Include="Views\Main\EditOrCreate.cshtml" />
     <Content Include="Views\Main\Details.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Main\_CommentPartial.cshtml" />
     <Content Include="Views\Main\Delete.cshtml" />
+    <Content Include="Views\Main\EditOrCreate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
