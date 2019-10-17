@@ -11,5 +11,6 @@ namespace WebApplication1.Models
         public int authorId { get; set; }
         public int bookId { get; set; }
         public string message { get; set; }
+        public int rating { get; set; }
     }
 }

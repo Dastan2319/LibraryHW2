@@ -32,8 +32,17 @@ namespace BLL.Service
             if (id != null)
             {
                 var book = db.Books.Get(id);
-                var message=msg.GetMessage().Where(x => x.bookId == book.Id);
-                return new BookDTO {Id=book.Id,AuthorId=book.AuthorId, Title= book.Title,Pages= book.Pages,Price= book.Price,Images= book.Images,message= message };
+                var message = msg.GetMessage().Where(x => x.bookId == book.Id);
+                var rating = message.Select(x => x.rating);
+                if (rating.Count() > 0)
+                {
+                    foreach (var item in rating)
+                    {
+                        book.rating = +item;
+                    }
+                    book.rating = book.rating / rating.Count();
+                }
+                return new BookDTO {Id=book.Id,AuthorId=book.AuthorId, Title= book.Title,Pages= book.Pages,Price= book.Price,Images= book.Images,message= message,rating=book.rating };
             }
             else
             {
