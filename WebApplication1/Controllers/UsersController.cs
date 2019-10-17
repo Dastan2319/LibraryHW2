@@ -40,7 +40,7 @@ namespace WebApplication1.Controllers
               usersService.SaveUpdate(tempUser);
             
 
-            return RedirectToActionPermanent("Index", "EditOrCreate");
+            return RedirectToActionPermanent("Index", "Main");
         }
         
     }

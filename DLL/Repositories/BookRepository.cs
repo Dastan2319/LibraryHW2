@@ -41,7 +41,12 @@ namespace WebApplication1.Repositories
 
         public void Update(Books item)
         {
-            db.Entry(item).State = EntityState.Modified;
+            db.Books.Where(x => x.Id == item.Id).FirstOrDefault().Images = item.Images;
+            db.Books.Where(x => x.Id == item.Id).FirstOrDefault().Pages = item.Pages;
+            db.Books.Where(x => x.Id == item.Id).FirstOrDefault().Price = item.Price;
+            db.Books.Where(x => x.Id == item.Id).FirstOrDefault().Title = item.Title;
+            db.SaveChanges();
+
         }
     }
 }

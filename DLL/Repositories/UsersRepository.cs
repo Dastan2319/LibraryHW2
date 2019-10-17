@@ -39,7 +39,8 @@ namespace WebApplication1.Repositories
 
         public void Update(Users item)
         {
-            db.Entry(item).State = EntityState.Modified;
+            db.Users.Where(x => x.Id == item.Id).FirstOrDefault().password = item.password;
+            db.SaveChanges();
         }
     }
 }
