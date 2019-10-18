@@ -15,6 +15,7 @@ namespace WebApplication1.Controllers
     {
         IBookService bookService;
         IMessageService messageService;
+        IGanreService GanreService;
         public MainController(IBookService serv, IMessageService mesServ)
         {
             messageService = mesServ;
@@ -87,10 +88,21 @@ namespace WebApplication1.Controllers
 
                 }
             List<string> items = new List<string>();
-            items.Add("фантастика");
-            items.Add("детектив");
-            items.Add("триллер");
-            items.Add("история");
+            var allGan=GanreService.GetBook();
+            if (allGan != null)
+            {
+                foreach (var item in allGan)
+                {
+                    items.Add(item.FirstName);
+                }
+            }
+            else
+            {
+                items.Add("фантастика");
+                items.Add("детектив");
+                items.Add("триллер");
+                items.Add("история");
+            }
             ViewBag.Ganre = items;
             return View(book);
         }
