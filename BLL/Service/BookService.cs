@@ -42,7 +42,7 @@ namespace BLL.Service
                     }
                     book.rating = book.rating / rating.Count();
                 }
-                return new BookDTO {Id=book.Id,AuthorId=book.AuthorId, Title= book.Title,Pages= book.Pages,Price= book.Price,Images= book.Images,message= message,rating=book.rating };
+                return new BookDTO {Id=book.Id,AuthorId=book.AuthorId, Title= book.Title,Pages= book.Pages,Price= book.Price,Images= book.Images,message= message,rating=book.rating,Ganre=book.Ganre };
             }
             else
             {
@@ -65,7 +65,8 @@ namespace BLL.Service
                 Price = orderDto.Price,
                 Pages = orderDto.Pages,
                 Images = orderDto.Images,
-                AuthorId= user.Id
+                AuthorId= user.Id,
+                Ganre=orderDto.Ganre
             };
             db.Books.Create(book);
             db.Save();
@@ -82,6 +83,7 @@ namespace BLL.Service
                 Price = orderDto.Price,
                 Pages = orderDto.Pages,
                 Images = orderDto.Images,
+                Ganre=orderDto.Ganre
             };
             db.Books.Update(book);
             db.Save();

@@ -42,7 +42,6 @@ namespace WebApplication1.Controllers
             var authorID = Request.Cookies["id"];
             if (authorID != null)
             {
-                HttpContext.Response.Cookies["Bookid"].Value = id + "";
                 BookViewModel book = new BookViewModel();
                 var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BookDTO, BookViewModel>()).CreateMapper();
                 book = mapper.Map<BookDTO, BookViewModel>(bookService.GetBook(id));
@@ -65,12 +64,15 @@ namespace WebApplication1.Controllers
         }
         public ActionResult EditOrCreate(int? id)
         {
+            
             var authorID = Request.Cookies["id"];
             BookViewModel book = new BookViewModel();
                 
-                if (id != null)
+                if (id != 0)
                 {
-                    var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BookDTO, BookViewModel>()).CreateMapper();
+               
+                HttpContext.Response.Cookies["Bookid"].Value = id + "";
+                var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BookDTO, BookViewModel>()).CreateMapper();
                     book = mapper.Map<BookDTO, BookViewModel>(bookService.GetBook(id));
                         if (book.AuthorId == int.Parse(authorID.Value))
                         {
@@ -84,7 +86,13 @@ namespace WebApplication1.Controllers
                 
 
                 }
-                return View(book);
+            List<string> items = new List<string>();
+            items.Add("фантастика");
+            items.Add("детектив");
+            items.Add("триллер");
+            items.Add("история");
+            ViewBag.Ganre = items;
+            return View(book);
         }
         [HttpPost]
         public ActionResult EditOrCreate(BookViewModel Books)

@@ -58,10 +58,6 @@
     <Compile Include="Entity\Ganre.cs" />
     <Compile Include="Entity\Message.cs" />
     <Compile Include="Entity\MyContextInitializer.cs" />
-    <Compile Include="Migrations\201910171746125_first.cs" />
-    <Compile Include="Migrations\201910171746125_first.Designer.cs">
-      <DependentUpon>201910171746125_first.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -77,11 +73,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201910171746125_first.resx">
-      <DependentUpon>201910171746125_first.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -15,6 +15,7 @@ namespace WebApplication1.Models
         public int? Price { get; set; }
         public string Images { get; set; }
         public int rating { get; set; }
+        public string Ganre { get; set; }
         public IEnumerable<MessageDTO> message { get; set; }
     }
 }
