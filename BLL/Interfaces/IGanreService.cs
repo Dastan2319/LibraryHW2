@@ -10,9 +10,9 @@ namespace BLL.Interfaces
 {
     public interface IGanreService
     {
-        void MakeBook(GanreDTO orderDto);
+        void MakeGanre(GanreDTO orderDto);
         GanreDTO GetGanre(int? id);
-        IEnumerable<GanreDTO> GetBook();
+        IEnumerable<GanreDTO> GetGanre();
         void SaveUpdate(Ganre orderDto);
         void Dispose();
     }

@@ -16,10 +16,11 @@ namespace WebApplication1.Controllers
         IBookService bookService;
         IMessageService messageService;
         IGanreService GanreService;
-        public MainController(IBookService serv, IMessageService mesServ)
+        public MainController(IBookService serv, IMessageService mesServ,IGanreService ganServ)
         {
             messageService = mesServ;
             bookService = serv;
+            GanreService = ganServ;
         }
         public ActionResult Index()
         {
@@ -40,6 +41,7 @@ namespace WebApplication1.Controllers
         // GET: Main/Details/5
         public ActionResult Details(int id)
         {
+            HttpContext.Response.Cookies["Bookid"].Value = id + "";
             var authorID = Request.Cookies["id"];
             if (authorID != null)
             {
@@ -67,6 +69,13 @@ namespace WebApplication1.Controllers
         {
             
             var authorID = Request.Cookies["id"];
+            List<string> items = new List<string>();
+            foreach (var item in GanreService.GetGanre())
+            {
+                items.Add(item.FirstName);
+            }
+
+            ViewBag.Ganre = items;
             BookViewModel book = new BookViewModel();
                 
                 if (id != 0)
@@ -87,23 +96,7 @@ namespace WebApplication1.Controllers
                 
 
                 }
-            List<string> items = new List<string>();
-            var allGan=GanreService.GetBook();
-            if (allGan != null)
-            {
-                foreach (var item in allGan)
-                {
-                    items.Add(item.FirstName);
-                }
-            }
-            else
-            {
-                items.Add("фантастика");
-                items.Add("детектив");
-                items.Add("триллер");
-                items.Add("история");
-            }
-            ViewBag.Ganre = items;
+            
             return View(book);
         }
         [HttpPost]
@@ -119,11 +112,12 @@ namespace WebApplication1.Controllers
                 tempBook.Price = Books.Price;
                 tempBook.Title = Books.Title;
                 tempBook.AuthorId = authorID;
+                tempBook.Ganre = Books.Ganre;
                 bookService.SaveUpdate(tempBook);
             }
             else
             {
-                var bookDto = new BookDTO { Images = Books.Images, AuthorId = authorID, Pages = Books.Pages, Price = Books.Price, Title = Books.Title };
+                var bookDto = new BookDTO { Images = Books.Images, AuthorId = authorID, Pages = Books.Pages, Price = Books.Price, Title = Books.Title,Ganre=Books.Ganre };
                 bookService.MakeBook(bookDto);
             }
             return RedirectToActionPermanent("Index", "Main");
