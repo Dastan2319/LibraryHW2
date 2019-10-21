@@ -1,6 +1,6 @@
-#Exam project
+# Exam project
 
-##Writer Platform
+## Writer Platform
 Я не уверен готово или нет , но надеюсь что да
 
 ### Установка
