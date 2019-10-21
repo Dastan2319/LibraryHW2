@@ -42,6 +42,8 @@ namespace DLL.Repositories
         public void Update(Message item)
         {
             db.Message.Where(x => x.id == item.id).FirstOrDefault().message=item.message;
+            db.Message.Where(x => x.id == item.id).FirstOrDefault().rating = item.rating;
+            db.SaveChanges();
         }
     }
 }
