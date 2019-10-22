@@ -211,6 +211,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\GanreController.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -278,6 +279,7 @@
     <Content Include="Views\Main\_CommentPartial.cshtml" />
     <Content Include="Views\Main\Delete.cshtml" />
     <Content Include="Views\Main\EditOrCreate.cshtml" />
+    <Content Include="Views\Ganre\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
