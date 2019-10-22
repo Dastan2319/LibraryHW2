@@ -45,6 +45,7 @@ namespace WebApplication1.Repositories
             db.Books.Where(x => x.Id == item.Id).FirstOrDefault().Pages = item.Pages;
             db.Books.Where(x => x.Id == item.Id).FirstOrDefault().Price = item.Price;
             db.Books.Where(x => x.Id == item.Id).FirstOrDefault().Title = item.Title;
+            db.Books.Where(x => x.Id == item.Id).FirstOrDefault().Ganre = item.Ganre;
             db.SaveChanges();
 
         }

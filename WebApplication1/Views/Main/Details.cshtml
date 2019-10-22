@@ -57,7 +57,8 @@
     @foreach (var item in Model.message)
     {
         <p>Author: @item.authorId</p>
-        <p>Message:@item.message</p>
+        <p>Message:</p>
+        <textarea readonly>@item.message</textarea>
     }
 </div>
 
