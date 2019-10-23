@@ -7,8 +7,9 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "EditOrCreate", new { id = 0 })|
+    @Html.ActionLink("Create New", "EditOrCreate", new { id = 0 })
     <p>Поиск</p><input id="find" >
+    <button>Найти</button>
 </p>
 <table class="table">
     <tr>
@@ -31,7 +32,7 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr id="@item.Id">
+    <tr id="@item.Id" class="alltr">
         <td class="titleClass">
             @Html.DisplayFor(modelItem => item.Title)
         </td>
@@ -58,27 +59,36 @@
 <script type="text/javascript">
     window.onload=function()
     {
+        
         $("#find").change(function () {
+                for (var k = 0; k < $(".alltr").length; k++) {
+                    $(".alltr").show();
+                }
             var titleCount = $(".titleClass").length;
-            console.log(titleCount);
-
-            //var count = $("#find").val()[0];
-            //console.log(count);
             for (var i = 0; i < titleCount; i++)
             {
-                var text = $($(".titleClass")[i]).text();
+                var textTitle = $($(".titleClass")[i]).text();
+                var textGanre = $($(".ganreClass")[i]).text();
                 var check = 0;
+                var check2 = 0;
                 var countFind = $("#find").val().length;
                 for (var j = 0; j < countFind; j++) {
-                    if (text[j] != $("#find").val()[j]) {
+                    if (textTitle.trim()[j] == $("#find").val()[j]) {
                         check++;
                     }
+                    if (textGanre.trim()[j] == $("#find").val()[j]) {
+                        check2++;
+                    }
                 }
-                if(check!=$("#find").lenght)
-                {
-                    $("#" + $($($(".titleClass")[i]).parent())[0].id).hide();
+                if (check != countFind) {
+                    if (check2 != countFind) {
+                        $("#" + $($($(".titleClass")[i]).parent())[0].id).hide();
+                    }
                 }
+              
+                
             }
+      
            
         })
     }
