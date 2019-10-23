@@ -1,0 +1,17 @@
+﻿@model WebApplication1.Models.BookViewModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h3>Подтвердите удаление </h3>
+<div>  
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Назад", "Index")
+        </div>
+    }
+</div>

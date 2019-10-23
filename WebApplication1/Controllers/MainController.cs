@@ -22,6 +22,7 @@ namespace WebApplication1.Controllers
             bookService = serv;
             GanreService = ganServ;
         }
+
         public ActionResult Index()
         {
             var authorID = Request.Cookies["id"];
@@ -37,25 +38,6 @@ namespace WebApplication1.Controllers
                 return RedirectToActionPermanent("Login", "Account");
             }
         }
-
-        // GET: Main/Details/5
-        public ActionResult Details(int id)
-        {
-            HttpContext.Response.Cookies["Bookid"].Value = id + "";
-            var authorID = Request.Cookies["id"];
-            if (authorID != null)
-            {
-                BookViewModel book = new BookViewModel();
-                var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BookDTO, BookViewModel>()).CreateMapper();
-                book = mapper.Map<BookDTO, BookViewModel>(bookService.GetBook(id));
-                return View(book);
-            }
-            else
-            {
-                return RedirectToActionPermanent("Login", "Account");
-            }
-        }
-        
         [HttpPost]
         public ActionResult Comment(string msg,string rating) 
         {
@@ -122,39 +104,23 @@ namespace WebApplication1.Controllers
             }
             return RedirectToActionPermanent("Index", "Main");
         }
-        [HttpGet]
-        public ActionResult Delete(int? id)
+        // GET: Main/Details/5
+        public ActionResult Details(int id)
         {
-            BookViewModel book = new BookViewModel();
+            HttpContext.Response.Cookies["Bookid"].Value = id + "";
             var authorID = Request.Cookies["id"];
             if (authorID != null)
             {
+                BookViewModel book = new BookViewModel();
                 var mapper = new MapperConfiguration(cfg => cfg.CreateMap<BookDTO, BookViewModel>()).CreateMapper();
                 book = mapper.Map<BookDTO, BookViewModel>(bookService.GetBook(id));
-                if (book.AuthorId == int.Parse(authorID.Value))
-                {
-                    return View(book);
-                }
-                else
-                {
-                    return RedirectToActionPermanent("Index", "Main");
-                }
+                return View(book);
             }
             else
             {
-                return RedirectToActionPermanent("Index", "Main");
+                return RedirectToActionPermanent("Login", "Account");
             }
         }
-        // GET: Main/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id)
-        {
-            
-            bookService.Delete(id);
-            return RedirectToActionPermanent("Index", "Main");
 
-
-        }
-        
     }
 }

@@ -275,11 +275,14 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Main\Index.cshtml" />
     <Content Include="Views\Main\Details.cshtml" />
-    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Users\EditOrCreateUser.cshtml" />
     <Content Include="Views\Main\_CommentPartial.cshtml" />
     <Content Include="Views\Main\Delete.cshtml" />
     <Content Include="Views\Main\EditOrCreate.cshtml" />
     <Content Include="Views\Ganre\Create.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Users\EditOrCreate.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

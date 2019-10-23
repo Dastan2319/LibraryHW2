@@ -7,7 +7,8 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "EditOrCreate", new { id = 0 })
+    @Html.ActionLink("Create New", "EditOrCreate", new { id = 0 })|
+    <p>Поиск</p><input id="find" >
 </p>
 <table class="table">
     <tr>
@@ -30,8 +31,8 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
+    <tr id="@item.Id">
+        <td class="titleClass">
             @Html.DisplayFor(modelItem => item.Title)
         </td>
         <td>
@@ -40,18 +41,45 @@
         <td>
             @Html.DisplayFor(modelItem => item.Price)
         </td>
-        <td>
+        <td class="ganreClass">
             @Html.DisplayFor(modelItem => item.Ganre)
         </td>
         <td>
             <img src="@item.Images" width="200px" height="100px" />
         </td>
         <td>
-            @Html.ActionLink("Edit", "EditOrCreate", new { id = item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            @Html.ActionLink("Details", "Details", new { id = item.Id })
         </td>
     </tr>
 }
 
 </table>
+
+<script type="text/javascript">
+    window.onload=function()
+    {
+        $("#find").change(function () {
+            var titleCount = $(".titleClass").length;
+            console.log(titleCount);
+
+            //var count = $("#find").val()[0];
+            //console.log(count);
+            for (var i = 0; i < titleCount; i++)
+            {
+                var text = $($(".titleClass")[i]).text();
+                var check = 0;
+                var countFind = $("#find").val().length;
+                for (var j = 0; j < countFind; j++) {
+                    if (text[j] != $("#find").val()[j]) {
+                        check++;
+                    }
+                }
+                if(check!=$("#find").lenght)
+                {
+                    $("#" + $($($(".titleClass")[i]).parent())[0].id).hide();
+                }
+            }
+           
+        })
+    }
+</script>
