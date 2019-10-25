@@ -7,7 +7,6 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "EditOrCreate")|
     @Html.ActionLink("Изменить пароль", "EditOrCreateUser")
 </p>
 <table class="table">
@@ -54,7 +53,7 @@
             @Html.DisplayFor(modelItem => item.Ganre)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Edit", "EditOrCreate", new { id=item.Id }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>
